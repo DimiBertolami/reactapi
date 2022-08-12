@@ -2,9 +2,8 @@ import { Button, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { decode } from "html-entities";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import useAxios from "../hooks/useAxios";
 import { handleScoreChange } from "../redux/actions";
 
@@ -20,7 +19,7 @@ const Questions = () => {
         amount_of_question,
         score,
     } = useSelector((state) => state);
-    const history = useHistory();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     let apiUrl = `/api.php?amount=${amount_of_question}`;
@@ -68,7 +67,7 @@ const Questions = () => {
         if (questionIndex + 1 < response.results.length) {
             setQuestionIndex(questionIndex + 1);
         } else {
-            history.push("/score");
+            navigate.push("/score");
         }
     };
 

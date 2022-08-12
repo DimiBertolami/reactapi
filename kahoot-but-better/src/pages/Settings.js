@@ -1,13 +1,13 @@
 import { Button, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SelectField from "../components/SelectField";
 import TextFieldComp from "../components/TextFieldComp";
 import useAxios from "../hooks/useAxios";
 
 const Settings = () => {
     const { response, error, loading } = useAxios({ url: "/api_category.php" });
-    const history = useHistory();
+    const navigate = useNavigate();
 
     if (loading) {
         return (
@@ -20,7 +20,7 @@ const Settings = () => {
     if (error) {
         return (
             <Typography variant="h6" mt={20} color="red">
-                Some Went Wrong!
+                Something Went Wrong!
             </Typography>
         );
     }
@@ -32,13 +32,13 @@ const Settings = () => {
     ];
 
     const typeOptions = [
-        { id: "multiple", name: "Multiple Choise" },
+        { id: "multiple", name: "Multiple Choice" },
         { id: "boolean", name: "True/False" },
     ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push("/questions");
+        navigate.push("/questions");
     };
 
     return (

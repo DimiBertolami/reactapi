@@ -1,19 +1,18 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { handleAmountChange, handleScoreChange } from "../redux/actions";
 
 const FinalScreen = () => {
     const disptach = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const { score } = useSelector((state) => state);
 
     const handleBackToSettings = () => {
         disptach(handleScoreChange(0));
         disptach(handleAmountChange(50));
-        history.push("/");
+        navigate.push("/");
     };
 
     return (
