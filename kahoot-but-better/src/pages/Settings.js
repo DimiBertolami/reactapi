@@ -1,9 +1,10 @@
 import { Button, CircularProgress, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
-import SelectField from "../components/SelectField";
-import TextFieldComp from "../components/TextFieldComp";
+import selectField from "../components/selectField";
+import TextFieldComp from "../components/textFieldComp";
 import useAxios from "../hooks/useAxios";
+
 
 const Settings = () => {
     const { response, error, loading } = useAxios({ url: "/api_category.php" });
@@ -43,9 +44,9 @@ const Settings = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <SelectField options={response.trivia_categories} label="Category" />
-            <SelectField options={difficultyOptions} label="Difficulty" />
-            <SelectField options={typeOptions} label="Type" />
+            <selectField options={response.trivia_categories} label="Category" />
+            <selectField options={difficultyOptions} label="Difficulty" />
+            <selectField options={typeOptions} label="Type" />
             <TextFieldComp />
             <Box mt={3} width="100%">
                 <Button fullWidth variant="contained" type="submit">
